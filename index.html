@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charles Okonkwo - Projects</title>
+  <meta name="description"
+    content="Web apps, desktop apps and games built by Charles Okonkwo, a developer studying at Seneca Polytechnic in Toronto.">
+
+  <!-- Fonts: Lilita One for the chunky logo and headings, Nunito for everything else -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="site">
+
+    <!-- ================= HEADER: logo + tabs =================
+         Each tab switches to a different page (see script.js).
+    -->
+    <header class="masthead">
+      <a class="logo" href="#projects">
+        <span class="logo-word">Charles</span>
+        <span class="logo-tag">Web apps, tools and games</span>
+      </a>
+
+      <nav class="tabs" aria-label="Main">
+        <a class="tab tab-blue" href="#projects" data-tab="projects">Projects</a>
+        <a class="tab tab-pink" href="#about" data-tab="about">About</a>
+        <a class="tab tab-green" href="#contact" data-tab="contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ================= BLUE BAR: filters + search =================
+         The filter buttons and search box narrow down the project grid.
+    -->
+    <div class="navbar">
+      <div class="filters" role="group" aria-label="Show projects by type">
+        <button type="button" class="filter" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter" data-filter="web" aria-pressed="false">Web apps</button>
+        <button type="button" class="filter" data-filter="desktop" aria-pressed="false">Desktop and games</button>
+        <button type="button" class="filter" data-filter="practice" aria-pressed="false">Practice and
+          coursework</button>
+      </div>
+
+      <div class="search">
+        <label for="search-input">Find a project</label>
+        <input id="search-input" type="search" placeholder="Try &quot;budget&quot; or &quot;React&quot;"
+          autocomplete="off">
+      </div>
+    </div>
+
+    <!-- ================= PAGES =================
+         Only one of these is visible at a time.
+    -->
+    <main class="content">
+
+      <!-- ---------- PROJECTS PAGE ---------- -->
+      <section class="view" id="view-projects" aria-labelledby="feature-heading">
+        <div class="panel">
+          <h2 class="panel-head" id="feature-heading">Featured project</h2>
+          <div class="panel-body feature-body">
+            <div id="feature" class="feature"></div>
+            <div class="pager" aria-label="Choose featured project">
+              <button type="button" class="pager-arrow" id="feature-prev"
+                aria-label="Previous project">&lsaquo;</button>
+              <div id="feature-dots" class="pager-dots"></div>
+              <button type="button" class="pager-arrow" id="feature-next" aria-label="Next project">&rsaquo;</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel-head panel-head-orange" id="grid-heading">All projects</h2>
+          <div class="panel-body">
+            <div id="grid" class="grid"></div>
+            <p id="grid-empty" class="muted grid-empty" hidden></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- ONE PROJECT'S PAGE (filled in by script.js) ---------- -->
+      <section class="view" id="view-project" hidden></section>
+
+      <!-- ---------- ABOUT PAGE ---------- -->
+      <section class="view" id="view-about" hidden aria-labelledby="about-h">
+        <div class="panel">
+          <h2 class="panel-head panel-head-pink" id="about-h">About Charles</h2>
+          <div class="panel-body about">
+            <img class="avatar" src="https://avatars.githubusercontent.com/u/194047703?v=4"
+              alt="Charles's GitHub profile picture" width="120" height="120">
+            <div class="about-text">
+              <p>
+                I'm a student at Seneca Polytechnic in Toronto, and I also work as a
+                cook supervisor. Running a kitchen line taught me to stay organized
+                under pressure and to finish what I start.
+              </p>
+              <p>
+                I learn by building things I actually use. Neural Cache started because
+                I wanted a better way to track my own budget, and along the way it
+                taught me about logins, databases and installable web apps.
+              </p>
+
+              <h3>Things I work with</h3>
+              <ul class="chips">
+                <li>HTML and CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Next.js</li>
+                <li>Node and Express</li>
+                <li>MongoDB</li>
+                <li>Supabase</li>
+                <li>Electron</li>
+                <li>Java</li>
+                <li>C++</li>
+                <li>Unreal Engine</li>
+                <li>Git</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- CONTACT PAGE ---------- -->
+      <section class="view" id="view-contact" hidden aria-labelledby="contact-h">
+        <div class="panel">
+          <h2 class="panel-head panel-head-green" id="contact-h">Get in touch</h2>
+          <div class="panel-body contact">
+            <p>The best way to see what I'm working on is my GitHub.</p>
+            <div class="contact-buttons">
+              <a class="btn btn-green btn-large" href="https://github.com/Charlesokn3">GitHub profile</a>
+              <!-- Add more ways to reach you here, for example:
+              <a class="btn btn-blue btn-large" href="mailto:you@example.com">Email me</a>
+              <a class="btn btn-blue btn-large" href="https://www.linkedin.com/in/your-name">LinkedIn</a>
+              -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built by Charles Okonkwo with HTML, CSS and JavaScript. Hosted on GitHub Pages.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

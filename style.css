@@ -1,0 +1,757 @@
+/* =====================================================================
+   Charles Okonkwo - portfolio
+   Style: a cleaned-up 2010-era games portal. Glossy logo, colored
+   tabs, blue panel headers, thumbnail grids and chunky buttons.
+   ===================================================================== */
+
+/* ---------- Colors (change these to restyle the whole site) ---------- */
+:root {
+  --sky-top: #bfe3fb;
+  /* page background at the top */
+  --sky-bottom: #e9f4fc;
+  /* page background lower down */
+  --page: #ffffff;
+  /* the white "site" card */
+  --panel-border: #b7d3ea;
+  --panel-tint: #f5faff;
+  /* very light blue inside some boxes */
+
+  --blue: #1f78c8;
+  --blue-light: #55aef0;
+  --blue-dark: #155a99;
+  --orange: #f7941d;
+  --orange-light: #ffc23a;
+  --pink: #d6338a;
+  --pink-light: #f06bb5;
+  --green: #4aa52e;
+  --green-light: #7fd255;
+  --purple: #6b45b8;
+  --purple-light: #9a77e0;
+  --grey: #5f7487;
+  --grey-light: #8ea3b5;
+
+  --text: #23313d;
+  --muted: #5d6f7e;
+
+  --font-head: "Lilita One", "Arial Black", sans-serif;
+  --font-body: "Nunito", Verdana, sans-serif;
+  --radius: 10px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html {
+  background: var(--sky-bottom);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background: linear-gradient(var(--sky-top), var(--sky-bottom) 420px) var(--sky-bottom);
+}
+
+a {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+a:hover {
+  color: var(--blue-dark);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* The white card that holds the whole site, like the old fixed-width layouts */
+.site {
+  max-width: 1080px;
+  margin: 20px auto 32px;
+  background: var(--page);
+  border-radius: 14px;
+  box-shadow: 0 2px 0 #9cc4e4, 0 12px 40px -18px rgba(20, 70, 120, 0.5);
+  overflow: hidden;
+}
+
+/* ---------- Header ---------- */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 18px 22px 0;
+  background: linear-gradient(#ffffff, #eef6fd);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding-bottom: 10px;
+}
+
+/* Chunky glossy logo: orange fill, white outline, dark outline */
+.logo-word {
+  font-family: var(--font-head);
+  font-size: 54px;
+  line-height: 0.95;
+  letter-spacing: 0.5px;
+  color: var(--orange);
+  background: linear-gradient(#ffd23c 0%, #ff9b16 55%, #f07b0e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px #9a3f00;
+  filter: drop-shadow(0 0 0 #fff) drop-shadow(2px 2px 0 #fff) drop-shadow(-2px -2px 0 #fff) drop-shadow(2px -2px 0 #fff) drop-shadow(-2px 2px 0 #fff) drop-shadow(0 3px 2px rgba(0, 40, 90, 0.35));
+}
+
+.logo-tag {
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--blue-dark);
+  margin-top: 4px;
+  padding-left: 3px;
+}
+
+/* Colored tabs sitting on top of the blue bar */
+.tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.tab {
+  display: block;
+  padding: 10px 20px 8px;
+  border-radius: 10px 10px 0 0;
+  font-family: var(--font-head);
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.tab:hover {
+  color: #fff;
+}
+
+/* Tabs for other pages are a bit shorter and paler; the current page's tab
+   is full color and taller, so it looks like it's "in front". */
+.tabs {
+  align-items: flex-end;
+}
+
+.tab:not([aria-current]) {
+  opacity: 0.72;
+}
+
+.tab:not([aria-current]):hover {
+  opacity: 0.95;
+}
+
+.tab[aria-current] {
+  padding-top: 14px;
+}
+
+.tab-blue {
+  background: linear-gradient(var(--blue-light), var(--blue));
+}
+
+.tab-pink {
+  background: linear-gradient(var(--pink-light), var(--pink));
+}
+
+.tab-green {
+  background: linear-gradient(var(--green-light), var(--green));
+}
+
+/* ---------- Blue bar ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 22px;
+  background: linear-gradient(#3d97e0, #1d6fbd);
+  border-top: 1px solid #7cc0f4;
+  border-bottom: 3px solid #13528f;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Filter buttons in the blue bar. The selected one is white. */
+.filter {
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.filter:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.filter[aria-pressed="true"] {
+  background: #fff;
+  color: var(--blue-dark);
+  text-shadow: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search label {
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.search input {
+  width: 220px;
+  padding: 6px 10px;
+  border: 1px solid #0f4a82;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 14px;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- Page area ---------- */
+.content {
+  padding: 16px;
+}
+
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.view[hidden] {
+  display: none;
+}
+
+/* ---------- Panels (the boxes with blue headers) ---------- */
+.panel {
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 7px 12px 6px;
+  font-family: var(--font-head);
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(var(--blue-light), var(--blue));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.panel-head-orange {
+  background: linear-gradient(var(--orange-light), var(--orange));
+}
+
+.panel-head-pink {
+  background: linear-gradient(var(--pink-light), var(--pink));
+}
+
+.panel-head-green {
+  background: linear-gradient(var(--green-light), var(--green));
+}
+
+.panel-head-purple {
+  background: linear-gradient(var(--purple-light), var(--purple));
+}
+
+.panel-head-grey {
+  background: linear-gradient(var(--grey-light), var(--grey));
+}
+
+.panel-body {
+  padding: 12px;
+}
+
+/* ---------- Thumbnails (drawn "box art") ---------- */
+.thumb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  aspect-ratio: 4 / 3;
+  padding: 8px;
+  border-radius: 7px;
+  overflow: hidden;
+  color: var(--ink);
+  background: linear-gradient(160deg, var(--a), var(--b));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+/* glossy shine across the top half */
+.thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 52% 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.04));
+  pointer-events: none;
+}
+
+.thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-icon {
+  width: 34%;
+  max-width: 64px;
+}
+
+.thumb-title {
+  font-family: var(--font-head);
+  font-size: 15px;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.thumb-big .thumb-title {
+  font-size: 30px;
+}
+
+.thumb-big .thumb-icon {
+  max-width: 96px;
+}
+
+/* ---------- Featured project ---------- */
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+
+.feature-art {
+  display: block;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.thumb-big {
+  aspect-ratio: 16 / 10;
+}
+
+.feature-art:hover .thumb {
+  filter: brightness(1.08);
+}
+
+.feature-cat {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--orange);
+}
+
+.feature-info h3 {
+  font-family: var(--font-head);
+  font-size: 34px;
+  line-height: 1.05;
+  color: var(--blue-dark);
+}
+
+.feature-info p:not(.feature-cat) {
+  margin: 8px 0 16px;
+  max-width: 46ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dotted var(--panel-border);
+}
+
+.pager-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.pager-arrow,
+.pager-dot {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: linear-gradient(#fff, #e3f0fb);
+  font-weight: 800;
+  color: var(--blue);
+}
+
+.pager-arrow {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.pager-dot[aria-current="true"] {
+  background: linear-gradient(var(--blue-light), var(--blue));
+  border-color: var(--blue-dark);
+  color: #fff;
+}
+
+/* ---------- Project grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.card .thumb {
+  margin-bottom: 6px;
+}
+
+.card .thumb-title {
+  display: none;
+}
+
+/* the name is shown under the picture */
+.card:hover .thumb {
+  filter: brightness(1.1);
+}
+
+.card:hover .card-name {
+  text-decoration: underline;
+}
+
+.card-name {
+  font-family: var(--font-head);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--blue-dark);
+}
+
+.card-pitch {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.grid-empty {
+  margin: 0;
+}
+
+/* ---------- One project's page ---------- */
+.crumbs {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.project-page {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.project-about {
+  margin: 6px 0 16px;
+  font-size: 17px;
+}
+
+.project-info h3,
+.about-text h3 {
+  margin: 22px 0 8px;
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--orange);
+}
+
+.features {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.features li {
+  margin-bottom: 4px;
+}
+
+/* ---------- About and Contact ---------- */
+.about {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.about-text {
+  max-width: 62ch;
+}
+
+.about-text p {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  border-radius: 14px;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1px var(--panel-border), 0 4px 10px -4px rgba(0, 40, 90, 0.4);
+}
+
+.contact p {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 2px 10px;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: var(--panel-tint);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid;
+  font-family: var(--font-head);
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover {
+  filter: brightness(1.07);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* The big yellow PLAY-style button */
+.btn-play {
+  color: #3d2300;
+  border-color: #c9790a;
+  background: linear-gradient(#ffe46b, #ffbf1f 55%, #f9a10f);
+}
+
+.btn-play:hover {
+  color: #3d2300;
+}
+
+.btn-blue {
+  color: #fff;
+  border-color: var(--blue-dark);
+  background: linear-gradient(var(--blue-light), var(--blue));
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.btn-blue:hover {
+  color: #fff;
+}
+
+.btn-green {
+  color: #fff;
+  border-color: #2f7a1b;
+  background: linear-gradient(var(--green-light), var(--green));
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.btn-green:hover {
+  color: #fff;
+}
+
+.btn-large {
+  font-size: 19px;
+  padding: 9px 22px;
+  flex-shrink: 0;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 12px 22px;
+  background: linear-gradient(#eef6fd, #dcebf8);
+  border-top: 1px solid var(--panel-border);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 760px) {
+
+  .feature,
+  .project-page {
+    grid-template-columns: 1fr;
+  }
+
+  .feature {
+    gap: 14px;
+  }
+
+  .feature-info h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 680px) {
+  .site {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 16px 0;
+  }
+
+  .logo-word {
+    font-size: 44px;
+  }
+
+  .tab {
+    padding: 8px 14px 6px;
+    font-size: 16px;
+  }
+
+  .tab[aria-current] {
+    padding-top: 11px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 16px;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .content {
+    padding: 12px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+  }
+
+  .card-name {
+    font-size: 16px;
+  }
+
+  .about {
+    flex-direction: column;
+  }
+
+  .avatar {
+    width: 88px;
+    height: 88px;
+  }
+
+  .btn-large {
+    font-size: 18px;
+    padding: 9px 18px;
+  }
+}
